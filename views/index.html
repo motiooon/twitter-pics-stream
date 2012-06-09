@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+
+{% block title %}{% endblock %}
+
+<br/><br/>
+
+{% block head %}
+    {% parent %}
+{% endblock %}
+
+{% block content %}
+
+<div class="form-search" >
+	
+	<!--<input type="text" placeholder="Search for photos..." id="search_term" />-->
+	<a href="#" class="btn btn-primary" id="emit_search">Stream Live Twitter Photos</a>
+
+</div>
+
+<br/>
+
+<div class="photo_wrapper">
+	
+	
+</div>
+
+ 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="/javascripts/bootstrap/js/bootstrap.js"></script> 
+			<script src="http://localhost:8033/socket.io/socket.io.js"></script>
+			<script>
+				var photo_wrapper = $('.photo_wrapper');
+			  var socket = io.connect('http://localhost:8033');
+			  
+			  var emit_search = $('#emit_search');
+			  var search_val = $('#search_term');
+			  
+			  emit_search.on('click', function(e){
+			  	socket.emit('search', search_val.val());
+			  	return false;
+			  });
+			  
+			  socket.on('search_data', function (data) {
+						photo_wrapper.prepend('<img class="twit_image" src="' + data + '" />');
+						console.log(data);
+			  });
+			</script>
+
+
+
+
+{% endblock %}

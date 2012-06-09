@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}My Site{% endblock %}</title>
+
+    {% block head %}
+    <link rel="stylesheet" href="/javascripts/bootstrap/css/bootstrap.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/stylesheets/style.css" type="text/css" media="all" />
+    {% endblock %}
+</head>
+<body>
+
+    <header>
+        <h1>{% block title %}{% endblock %}</h1>
+    </header>
+
+    <section>
+    {% block content %}{% endblock %}
+
+        <section>
+            {% block sidebar %}
+            {% endblock %}
+        </section>
+    </section>
+
+
+  {% block scripts %}
+  
+  {% endblock %}
+
+</body>
+</html>
